@@ -1,7 +1,7 @@
 Summary: Create DOS/MS-compatible boot records
 Name: ms-sys
 Version: 2.5.3
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPL
 Group: Applications/System
 URL: http://ms-sys.sourceforge.net/
@@ -9,6 +9,7 @@ URL: http://ms-sys.sourceforge.net/
 Source: https://downloads.sourceforge.net/project/ms-sys/ms-sys%20development/%{version}/ms-sys-%{version}.tar.gz
 BuildRequires: bash
 BuildRequires: gettext
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 This program is used to create DOS/MS-compatible boot records. It is
@@ -21,6 +22,7 @@ written.
 %setup
 
 %build
+%define debug_package %{nil}
 %{__make} debug \
     CC="${CC:-%{__cc}}" \
     EXTRA_CFLAGS="%{optflags} -fasm" \
@@ -40,8 +42,8 @@ written.
 %defattr(-, root, root, 0755)
 %license COPYING
 %doc CHANGELOG CONTRIBUTORS FAQ README TODO
-%doc %{_mandir}/man1/ms-sys.1.gz
-%doc %{_mandir}/*/man1/ms-sys.1.gz
+%doc %{_mandir}/man1/ms-sys.1*
+%doc %{_mandir}/*/man1/ms-sys.1*
 %{_bindir}/ms-sys
 
 %changelog
@@ -52,8 +54,17 @@ written.
 * Sun Apr 17 2016 Elia Devito <eliadevito@yahoo.it> - 2.5.3-1
 - Updated to release 2.5.3
 
+* Sun Feb 07 2016 Matthieu Milan <usineur0@gmail.com> 2.5.2-1
+- Updated to release 2.5.2.
+
+* Tue Nov 03 2015 Matthieu Milan <usineur0@gmail.com> 2.5.0-1
+- Updated to release 2.5.0.
+
 * Thu Oct 01 2015 Elia Devito <eliadevito@yahoo.it> - 2.4.1-1
 - Updated to release 2.4.1
+
+* Fri Mar 13 2015 Matthieu Milan <usineur0@gmail.com> 2.4.1-1
+- Updated to release 2.4.1.
 
 * Sun Jun 01 2014 Dag Wieers <dag@wieers.com> - 2.4.0-1
 - Updated to release 2.4.0.
